@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: horseracing-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: horse_racing_db
+      MYSQL_USER: horseracing
+      MYSQL_PASSWORD: horseracing123
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./docs/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - horseracing-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: horseracing-api
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/horse_racing_db
+      SPRING_DATASOURCE_USERNAME: horseracing
+      SPRING_DATASOURCE_PASSWORD: horseracing123
+      SPRING_PROFILES_ACTIVE: prod
+    ports:
+      - "8080:8080"
+    networks:
+      - horseracing-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: horseracing-web
+    depends_on:
+      - backend
+    environment:
+      NEXT_PUBLIC_API_URL: http://backend:8080/api
+    ports:
+      - "3000:3000"
+    networks:
+      - horseracing-network
+
+volumes:
+  mysql_data:
+
+networks:
+  horseracing-network:
+    driver: bridge
