@@ -1,0 +1,387 @@
+{
+  "project": "Horse Racing Management System - Full Test",
+  "source_environment": "Horse Racing Management System - Local XAMPP",
+  "platform": "PHP / XAMPP (Apache + MySQL)",
+  "total_folders": 9,
+  "total_requests": 25,
+  "total_test_cases": 74,
+  "folders": [
+    {
+      "folder_name": "00 - Health Check",
+      "request_count": 2,
+      "requests": [
+        {
+          "request_name": "00.1 - Ket noi MySQL (test_db.php)",
+          "method": "GET",
+          "endpoint": "{{base_url}}/test_db.php",
+          "description": null,
+          "has_prerequest_script": false,
+          "test_case_count": 4,
+          "test_cases": [
+            "[00.1] Status 200",
+            "[00.1] Khong co loi PHP Fatal/Parse",
+            "[00.1] Ket noi database thanh cong",
+            "[00.1] Co so luong san pham tu DB"
+          ]
+        },
+        {
+          "request_name": "00.2 - Trang chu load san pham",
+          "method": "GET",
+          "endpoint": "{{base_url}}/index.php",
+          "description": null,
+          "has_prerequest_script": false,
+          "test_case_count": 4,
+          "test_cases": [
+            "[00.2] Status 200",
+            "[00.2] Khong co loi PHP",
+            "[00.2] Trang chu Royal Bid hien thi",
+            "[00.2] Co danh sach san pham hoac thong bao"
+          ]
+        }
+      ]
+    },
+    {
+      "folder_name": "01 - Trang cong khai (GET)",
+      "request_count": 4,
+      "requests": [
+        {
+          "request_name": "01.1 - GET Form dang nhap",
+          "method": "GET",
+          "endpoint": "{{base_url}}/login.php",
+          "description": null,
+          "has_prerequest_script": false,
+          "test_case_count": 5,
+          "test_cases": [
+            "[01.1] Status 200",
+            "[01.1] Tieu de trang dang nhap",
+            "[01.1] Co du cac field trong form",
+            "[01.1] Co nut Truy Cap",
+            "[01.1] Co link den trang dang ky"
+          ]
+        },
+        {
+          "request_name": "01.2 - GET Form dang ky",
+          "method": "GET",
+          "endpoint": "{{base_url}}/register.php",
+          "description": null,
+          "has_prerequest_script": false,
+          "test_case_count": 4,
+          "test_cases": [
+            "[01.2] Status 200",
+            "[01.2] Tieu de trang dang ky",
+            "[01.2] Co du cac field trong form",
+            "[01.2] Co link den trang dang nhap"
+          ]
+        },
+        {
+          "request_name": "01.3 - GET Login auto-fill qua URL (?u=&p=)",
+          "method": "GET",
+          "endpoint": "{{base_url}}/login.php?u=demo_user&p=demo_pass",
+          "description": null,
+          "has_prerequest_script": false,
+          "test_case_count": 3,
+          "test_cases": [
+            "[01.3] Status 200",
+            "[01.3] Username duoc dien san tu URL",
+            "[01.3] Password duoc dien san tu URL"
+          ]
+        },
+        {
+          "request_name": "01.4 - GET Admin dashboard (cong khai)",
+          "method": "GET",
+          "endpoint": "{{base_url}}/admin.php",
+          "description": null,
+          "has_prerequest_script": false,
+          "test_case_count": 3,
+          "test_cases": [
+            "[01.4] Status 200",
+            "[01.4] Khong co loi PHP",
+            "[01.4] Admin panel render day du"
+          ]
+        }
+      ]
+    },
+    {
+      "folder_name": "02 - Bao ve session (chua dang nhap)",
+      "request_count": 3,
+      "requests": [
+        {
+          "request_name": "02.1 - my_bids chua login -> phai chuyen ve login",
+          "method": "GET",
+          "endpoint": "{{base_url}}/my_bids.php",
+          "description": "Chay request nay TRUOC khi dang nhap. Neu Postman dang giu cookie session cu, xoa cookie trong Cookies Manager truoc.",
+          "has_prerequest_script": true,
+          "test_case_count": 1,
+          "test_cases": [
+            "[02.1] Chua login thi bi chay ve trang login"
+          ]
+        },
+        {
+          "request_name": "02.2 - Dat gia chua login -> yeu cau dang nhap",
+          "method": "POST",
+          "endpoint": "{{base_url}}/index.php",
+          "description": null,
+          "has_prerequest_script": false,
+          "test_case_count": 2,
+          "test_cases": [
+            "[02.2] Status 200",
+            "[02.2] Yeu cau dang nhap truoc khi dat gia"
+          ]
+        },
+        {
+          "request_name": "02.3 - Dang nhap sai mat khau",
+          "method": "POST",
+          "endpoint": "{{base_url}}/login.php",
+          "description": null,
+          "has_prerequest_script": false,
+          "test_case_count": 3,
+          "test_cases": [
+            "[02.3] Status 200",
+            "[02.3] Hien thi thong bao loi dang nhap",
+            "[02.3] Van o lai trang dang nhap"
+          ]
+        }
+      ]
+    },
+    {
+      "folder_name": "03 - Dang ky tai khoan moi",
+      "request_count": 2,
+      "requests": [
+        {
+          "request_name": "03.1 - POST Dang ky thanh cong",
+          "method": "POST",
+          "endpoint": "{{base_url}}/register.php",
+          "description": null,
+          "has_prerequest_script": true,
+          "test_case_count": 4,
+          "test_cases": [
+            "[03.1] Khong loi server",
+            "[03.1] Khong co loi PHP",
+            "[03.1] Dang ky thanh cong - chuyen sang trang login",
+            "[03.1] Username da luu vao environment"
+          ]
+        },
+        {
+          "request_name": "03.2 - POST Dang ky trung username",
+          "method": "POST",
+          "endpoint": "{{base_url}}/register.php",
+          "description": "Dung lai username tu 03.1 de kiem tra bao loi trung ten.",
+          "has_prerequest_script": false,
+          "test_case_count": 3,
+          "test_cases": [
+            "[03.2] Status 200",
+            "[03.2] Bao loi ten dang nhap da ton tai",
+            "[03.2] Van o trang dang ky"
+          ]
+        }
+      ]
+    },
+    {
+      "folder_name": "04 - Dang nhap",
+      "request_count": 1,
+      "requests": [
+        {
+          "request_name": "04.1 - POST Dang nhap thanh cong",
+          "method": "POST",
+          "endpoint": "{{base_url}}/login.php",
+          "description": "Dung username/password tu buoc 03.1. Postman tu dong giu cookie PHPSESSID.",
+          "has_prerequest_script": false,
+          "test_case_count": 5,
+          "test_cases": [
+            "[04.1] Khong loi server",
+            "[04.1] Khong co thong bao loi dang nhap",
+            "[04.1] Dang nhap thanh cong - ve trang chu",
+            "[04.1] Hien thi ten user va nut Thoat",
+            "[04.1] Session dang nhap hoat dong"
+          ]
+        }
+      ]
+    },
+    {
+      "folder_name": "05 - User da dang nhap",
+      "request_count": 6,
+      "requests": [
+        {
+          "request_name": "05.1 - GET my_bids (co session)",
+          "method": "GET",
+          "endpoint": "{{base_url}}/my_bids.php",
+          "description": null,
+          "has_prerequest_script": false,
+          "test_case_count": 5,
+          "test_cases": [
+            "[05.1] Status 200",
+            "[05.1] Khong co loi PHP",
+            "[05.1] Hien thi trang my_bids.php",
+            "[05.1] Co du lieu dau gia (dang dan dau / bi vuot / trong)",
+            "[05.1] Da dang nhap - khong thay form login"
+          ]
+        },
+        {
+          "request_name": "05.2 - GET Trang chu - lay product_id con han",
+          "method": "GET",
+          "endpoint": "{{base_url}}/index.php",
+          "description": null,
+          "has_prerequest_script": false,
+          "test_case_count": 2,
+          "test_cases": [
+            "[05.2] Status 200",
+            "[05.2] Cap nhat product_id vao environment"
+          ]
+        },
+        {
+          "request_name": "05.3 - POST Dat gia hop le",
+          "method": "POST",
+          "endpoint": "{{base_url}}/index.php",
+          "description": null,
+          "has_prerequest_script": false,
+          "test_case_count": 3,
+          "test_cases": [
+            "[05.3] Status 200",
+            "[05.3] Khong co loi PHP",
+            "[05.3] Co ket qua dat gia hop le"
+          ]
+        },
+        {
+          "request_name": "05.4 - POST Dat gia qua thap",
+          "method": "POST",
+          "endpoint": "{{base_url}}/index.php",
+          "description": null,
+          "has_prerequest_script": false,
+          "test_case_count": 2,
+          "test_cases": [
+            "[05.4] Status 200",
+            "[05.4] Tu choi gia dat qua thap"
+          ]
+        },
+        {
+          "request_name": "05.5 - GET my_bids sau khi dat gia",
+          "method": "GET",
+          "endpoint": "{{base_url}}/my_bids.php",
+          "description": null,
+          "has_prerequest_script": false,
+          "test_case_count": 3,
+          "test_cases": [
+            "[05.5] Status 200",
+            "[05.5] Hien thi trang my_bids.php",
+            "[05.5] Co du lieu bid hoac thong bao trong"
+          ]
+        },
+        {
+          "request_name": "05.6 - POST Xac nhan chuyen khoan (confirm_pay)",
+          "method": "POST",
+          "endpoint": "{{base_url}}/my_bids.php",
+          "description": "Chi thanh cong khi user la nguoi thang cuoc (bid_amount bang price san pham).",
+          "has_prerequest_script": false,
+          "test_case_count": 3,
+          "test_cases": [
+            "[05.6] Khong loi server",
+            "[05.6] Khong co loi PHP",
+            "[05.6] Ket qua hop le (gui duoc hoac du lieu sai)"
+          ]
+        }
+      ]
+    },
+    {
+      "folder_name": "06 - Admin actions",
+      "request_count": 3,
+      "requests": [
+        {
+          "request_name": "06.1 - GET Admin dashboard day du",
+          "method": "GET",
+          "endpoint": "{{base_url}}/admin.php",
+          "description": null,
+          "has_prerequest_script": false,
+          "test_case_count": 6,
+          "test_cases": [
+            "[06.1] Status 200",
+            "[06.1] Khong co loi PHP",
+            "[06.1] Co bang tai san dang dau gia",
+            "[06.1] Co bang lich su thang cuoc",
+            "[06.1] Co bang yeu cau thanh toan",
+            "[06.1] Co form them san pham"
+          ]
+        },
+        {
+          "request_name": "06.2 - GET Admin duyet don thanh toan",
+          "method": "GET",
+          "endpoint": "{{base_url}}/admin.php?approve_order={{order_id}}",
+          "description": "Doi order_id trong environment sang ID don dang pending truoc khi chay.",
+          "has_prerequest_script": false,
+          "test_case_count": 2,
+          "test_cases": [
+            "[06.2] Status 200",
+            "[06.2] Admin phan hoi sau khi duyet"
+          ]
+        },
+        {
+          "request_name": "06.3 - GET Admin tu choi don thanh toan",
+          "method": "GET",
+          "endpoint": "{{base_url}}/admin.php?cancel_order={{order_id}}",
+          "description": null,
+          "has_prerequest_script": false,
+          "test_case_count": 2,
+          "test_cases": [
+            "[06.3] Status 200",
+            "[06.3] Admin phan hoi sau khi tu choi"
+          ]
+        }
+      ]
+    },
+    {
+      "folder_name": "07 - Logout & ket thuc",
+      "request_count": 2,
+      "requests": [
+        {
+          "request_name": "07.1 - GET Logout",
+          "method": "GET",
+          "endpoint": "{{base_url}}/logout.php",
+          "description": null,
+          "has_prerequest_script": false,
+          "test_case_count": 2,
+          "test_cases": [
+            "[07.1] Logout thanh cong",
+            "[07.1] Sau logout ve trang chu chua dang nhap"
+          ]
+        },
+        {
+          "request_name": "07.2 - GET my_bids sau logout -> phai ve login",
+          "method": "GET",
+          "endpoint": "{{base_url}}/my_bids.php",
+          "description": null,
+          "has_prerequest_script": false,
+          "test_case_count": 1,
+          "test_cases": [
+            "[07.2] Session da huy - khong vao duoc my_bids"
+          ]
+        }
+      ]
+    },
+    {
+      "folder_name": "08 - Manual (can chon file anh)",
+      "request_count": 2,
+      "requests": [
+        {
+          "request_name": "08.1 - POST Admin them san pham moi",
+          "method": "POST",
+          "endpoint": "{{base_url}}/admin.php",
+          "description": "Chon file anh o field 'image' truoc khi Send.",
+          "has_prerequest_script": false,
+          "test_case_count": 2,
+          "test_cases": [
+            "[08.1] Them san pham - phan hoi hop le",
+            "[08.1] Khong co loi PHP"
+          ]
+        },
+        {
+          "request_name": "08.2 - GET Admin xoa san pham",
+          "method": "GET",
+          "endpoint": "{{base_url}}/admin.php?delete_id={{product_id}}",
+          "description": "Can than: xoa that san pham khoi DB.",
+          "has_prerequest_script": false,
+          "test_case_count": 0,
+          "test_cases": []
+        }
+      ]
+    }
+  ]
+}
